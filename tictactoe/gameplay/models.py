@@ -1,5 +1,14 @@
+from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
+
+GAME_STATUS_CHOICES = (
+    ('F', 'First Player To Move'),
+    ('S', 'Second Player To Move'),
+    ('W', 'First Player Wins'),
+    ('L', 'Second Player wins'),
+    ('D', 'Draw')
+)
 
 class Game(models.Model):
     first_player = models.ForeignKey(User,
@@ -11,7 +20,13 @@ class Game(models.Model):
     """Add a default value the database 
     table has already been created
     """
-    status = models.CharField(max_length=1,default='F')
+    status = models.CharField(max_length=1,default='F',
+                    choices=GAME_STATUS_CHOICES)
+
+    def __str__(self):
+        return "{0} vs {1}".format(
+            self.first_player, self.second_player
+        )
 
 class Move(models.Model):
     x = models.IntegerField()
