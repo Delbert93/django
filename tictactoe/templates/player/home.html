@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome</h1>
+    Hi! there are currently {{ ngames }} games in the database
+
+    <ul>
+        {% for g in games %}
+            <li>Game {{g.id}}: {{g.first_name}} vs {{g.second_player}} </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
