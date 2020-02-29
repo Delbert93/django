@@ -4,4 +4,14 @@
         <meta charset="UTF-8">
         <title>Home</title>
     </head>
+    <body>
+        <h1>Welcome</h1>
+        Hi! there are currently {{ ngames }} games in the database
+
+        <ul>
+            {% for g in games %}
+                <li>Game {{g.id}}: {{g.first_name}} vs {{g.second_player}} </li>
+            {% endfor %}
+        </ul>
+    </body>
 </html>
